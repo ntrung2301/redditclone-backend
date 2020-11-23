@@ -14,8 +14,9 @@ public class PostResponse {
 	private String description;
 	private String url;
 	private String username;
-	
 	private Integer voteCount;
 	private Integer commentCount;
 	private String duration;
+	private boolean upVoted;
+	private boolean downVoted;
 }

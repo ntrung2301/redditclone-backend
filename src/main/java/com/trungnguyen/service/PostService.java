@@ -63,8 +63,8 @@ public class PostService {
 							.collect(Collectors.toList());
 	}
 
-	public List<PostResponse> getPostsByUser(Long id) {
-		User user = userRepository.findById(id).orElseThrow(() -> new SpringRedditException("No user found with the given id " + id));
+	public List<PostResponse> getPostsByUser(String username) {
+		User user = userRepository.findByUsername(username).orElseThrow(() -> new SpringRedditException("No user found with the given id " + username));
 		return postRepository.findAllByUser(user)
 							.stream()
 							.map(posts -> postMapper.postToResponse(posts))

@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.BeanIds;
@@ -132,5 +133,13 @@ public class AuthService {
 				.refreshToken(rtr.getRefreshToken())
 				.expiresAt(Instant.now().plusMillis(jwtProvider.getJwtExpirationInMillis()))
 				.build();
+	}
+	
+	/*
+	 *  Check if the current principal is not an anonymous and is authenticated
+	 */
+	public boolean isLoggedIn() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		return !(auth instanceof AnonymousAuthenticationToken) && auth.isAuthenticated();
 	}
 }

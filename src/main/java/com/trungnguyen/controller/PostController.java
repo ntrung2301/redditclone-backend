@@ -45,9 +45,9 @@ public class PostController {
 		return ResponseEntity.status(HttpStatus.OK).body(postService.getPostsBySubreddit(id));
 	}
 	
-	@GetMapping("by-user/{id}")
-	public ResponseEntity<List<PostResponse>> getPostByUser(@PathVariable Long id) {
-		return ResponseEntity.status(HttpStatus.OK).body(postService.getPostsByUser(id));
+	@GetMapping("by-user/{username}")
+	public ResponseEntity<List<PostResponse>> getPostByUser(@PathVariable String username) {
+		return ResponseEntity.status(HttpStatus.OK).body(postService.getPostsByUser(username));
 	}
 	
 }
